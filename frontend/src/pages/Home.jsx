@@ -11,7 +11,9 @@ function Home() {
 				<img src="/images/mainPageImg.png" alt="Ana sayfa için görsel" />
 			</picture>
 			<p>{greeting}</p>
-			<MainButton text="Let's Start"></MainButton>
+			<div className="btn-bottom">
+				<MainButton text="Let's Start"></MainButton>
+			</div>
 		</section>
 	);
 }

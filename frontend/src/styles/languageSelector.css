@@ -1,0 +1,50 @@
+.language-selection {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	gap: 20px;
+	font-family: var(--font-family);
+}
+
+.language-selectors {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	flex-wrap: wrap;
+}
+
+.language-selectors div {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	gap: 12px;
+	flex: 1;
+}
+
+.language-selectors select {
+	padding: 12px 20px;
+	cursor: pointer;
+	appearance: none;
+	position: relative;
+	flex: 1;
+	display: flex;
+	max-width: 250px;
+	margin-right: 0;
+	margin-left: auto;
+}
+
+.language-selectors select:active {
+	background: #d9b857;
+	box-shadow: inset 2px 2px 5px #a66c28;
+	transform: translate(1px, 1px);
+}
+
+.language-selectors select {
+	background-image: url("data:image/svg+xml;utf8,<svg fill='%236b4226' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+	background-repeat: no-repeat;
+	background-position: right 10px center;
+	background-size: 18px;
+	padding-right: 40px;
+}
