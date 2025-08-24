@@ -1,6 +1,7 @@
 // import { useEffect, useState } from "react";
 // import axios from "axios";
 
+import CategorySelector from "./components/CategorySelector.jsx";
 import LanguageSelector from "./components/LanguageSelector.jsx";
 import Home from "./pages/Home.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -22,6 +23,7 @@ function App() {
 				{/* <Route path="/about" element={<Quiz />} />
 				 */}
 				<Route path="/a" element={<LanguageSelector />} />
+				<Route path="/b" element={<CategorySelector />} />
 
 			</Routes>
 		</BrowserRouter>
