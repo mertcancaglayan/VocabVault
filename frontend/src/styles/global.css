@@ -62,6 +62,11 @@ main {
 
 h2 {
 	text-align: center;
-	margin-bottom: 25px;
 	text-shadow: 1px 1px 0 #f3e6d9;
+}
+
+
+.btn-bottom {
+	margin-top: auto;
+	margin-bottom: 24px;
 }

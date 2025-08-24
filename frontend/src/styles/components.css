@@ -13,6 +13,7 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
+	font-family: var(--font-family);
 }
 
 .btn:hover:not(.disabled) {
