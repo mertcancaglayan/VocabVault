@@ -65,8 +65,9 @@ h2 {
 	text-shadow: 1px 1px 0 #f3e6d9;
 }
 
-
 .btn-bottom {
+	display: flex;
+	gap: 12px;
 	margin-top: auto;
 	margin-bottom: 24px;
 }
