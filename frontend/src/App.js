@@ -22,8 +22,6 @@ function App() {
 				<Route path="/" element={<Home />} />
 				{/* <Route path="/about" element={<Quiz />} />
 				 */}
-				<Route path="/a" element={<LanguageSelector />} />
-				<Route path="/b" element={<CategorySelector />} />
 
 			</Routes>
 		</BrowserRouter>

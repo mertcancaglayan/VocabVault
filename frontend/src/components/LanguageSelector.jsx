@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../styles/languageSelector.css";
 import MainButton from "./MainButton";
 
-function LanguageSelector() {
+function LanguageSelector({ nextStep, prevStep }) {
 	const [fromLang, setFromLang] = useState("");
 	const [toLang, setToLang] = useState("");
 
@@ -36,7 +36,8 @@ function LanguageSelector() {
 				</div>
 			</div>
 			<div className="btn-bottom">
-				<MainButton text="Next"></MainButton>
+				<MainButton text="Prev" onClick={prevStep}></MainButton>
+				<MainButton text="Next" onClick={nextStep}></MainButton>
 			</div>
 		</section>
 	);
