@@ -2,6 +2,7 @@
 // import axios from "axios";
 
 import Home from "./pages/Home.jsx";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
 	// const [words, setWords] = useState([]);
@@ -13,7 +14,15 @@ function App() {
 	// 	});
 	// }, []);
 
-	return <Home></Home>;
+	return (
+		<BrowserRouter>
+			<Routes>
+				<Route path="/" element={<Home />} />
+				{/* <Route path="/about" element={<Quiz />} />
+				 */}
+			</Routes>
+		</BrowserRouter>
+	);
 }
 
 export default App;
