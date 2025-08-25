@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import MainButton from "./MainButton";
 import "../styles/categorySelector.css";
+import { useNavigate } from "react-router-dom";
 
 function CategorySelector({ prevStep, nextStep }) {
 	const [category, setCategory] = useState("");
@@ -8,6 +9,8 @@ function CategorySelector({ prevStep, nextStep }) {
 	const handleCategorySelect = (selectedCategory) => {
 		setCategory(selectedCategory);
 	};
+
+	let navigateToQuiz = useNavigate();
 
 	return (
 		<section>
@@ -61,7 +64,11 @@ function CategorySelector({ prevStep, nextStep }) {
 
 			<div className="btn-bottom">
 				<MainButton text="Prev" onClick={prevStep} />
-				<MainButton text="Next" onClick={nextStep} disabled={!category} />
+				<MainButton
+					text="Next"
+					onClick={() => navigateToQuiz("/quiz", { state: { category } })}
+					disabled={!category}
+				/>
 			</div>
 		</section>
 	);
