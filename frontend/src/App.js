@@ -1,10 +1,9 @@
 // import { useEffect, useState } from "react";
 // import axios from "axios";
 
-import CategorySelector from "./components/CategorySelector.jsx";
-import LanguageSelector from "./components/LanguageSelector.jsx";
 import Home from "./pages/Home.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Quiz from "./pages/Quiz.jsx";
 
 function App() {
 	// const [words, setWords] = useState([]);
@@ -22,7 +21,7 @@ function App() {
 				<Route path="/" element={<Home />} />
 				{/* <Route path="/about" element={<Quiz />} />
 				 */}
-
+				<Route path="/quiz" element={<Quiz />}></Route>
 			</Routes>
 		</BrowserRouter>
 	);
