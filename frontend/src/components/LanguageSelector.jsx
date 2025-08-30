@@ -7,9 +7,12 @@ function LanguageSelector({ nextStep, prevStep }) {
 	const [toLang, setToLang] = useState("");
 
 	useEffect(() => {
-		console.log(fromLang);
-		console.log(toLang);
-	}, [fromLang, toLang]);
+		localStorage.setItem("wordvault_fromLang", fromLang);
+	}, [fromLang]);
+
+	useEffect(() => {
+		localStorage.setItem("wordvault_toLang", toLang);
+	}, [toLang]);
 
 	return (
 		<section className="language-selection">
@@ -37,7 +40,11 @@ function LanguageSelector({ nextStep, prevStep }) {
 			</div>
 			<div className="btn-bottom">
 				<MainButton text="Prev" onClick={prevStep}></MainButton>
-				<MainButton text="Next" onClick={nextStep}></MainButton>
+				<MainButton
+					text="Next"
+					onClick={nextStep}
+					disabled={!fromLang || !toLang || fromLang === toLang}
+				></MainButton>
 			</div>
 		</section>
 	);

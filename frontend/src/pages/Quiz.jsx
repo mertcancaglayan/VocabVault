@@ -1,14 +1,35 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../styles/quiz.css";
 import MainButton from "../components/MainButton";
+import { getWords } from "../api/words";
 
 function Quiz() {
+	const [words, setWords] = useState([]);
+
 	let location = useLocation();
+	const { category, fromLang, toLang } = location.state || {};
 
-	const { category } = location.state || {};
+	const fromLangSafe = fromLang || localStorage.getItem("wordvault_fromLang");
+	const toLangSafe = toLang || localStorage.getItem("wordvault_toLang");
 
-	let navitageTo = useNavigate();
+	let navigateTo = useNavigate();
+
+	useEffect(() => {
+		if (!category || !fromLangSafe || !toLangSafe) return;
+
+		const fetchWords = async () => {
+			try {
+				const data = await getWords(category, fromLangSafe, toLangSafe);
+				setWords(data);
+			} catch (error) {
+				console.error("Error fetching words:", error);
+			}
+		};
+
+		fetchWords();
+		console.log(words);
+	}, [category, fromLangSafe, toLangSafe]);
 
 	return (
 		<section className="quiz-section">
@@ -16,7 +37,7 @@ function Quiz() {
 				<span
 					className="back"
 					onClick={() => {
-						navitageTo("/");
+						navigateTo("/");
 					}}
 				>
 					<svg
