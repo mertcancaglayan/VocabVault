@@ -77,19 +77,11 @@ header span.back:hover {
 	margin-bottom: 30px;
 }
 
-.option-btn:hover:not(.disabled) {
-	background: #f7e4b3;
-	box-shadow: 8px 8px 0 #a66c28, inset 0 3px 0 #fdf6e3;
-	transform: translate(-3px, -3px);
+ul.options {
+	list-style: none;
 }
 
-.option-btn:active:not(.disabled) {
-	background: #d9b857;
-	box-shadow: inset 2px 2px 5px #a66c28;
-	transform: translate(1px, 1px);
-}
-
-.option-btn.correct {
+.btn.correct {
 	background: #a1d99b;
 	border-color: #31a354;
 	box-shadow: none;
@@ -97,7 +89,7 @@ header span.back:hover {
 	cursor: default;
 }
 
-.option-btn.wrong {
+.btn.wrong {
 	background: #fbb6b6;
 	border-color: #c53030;
 	box-shadow: none;
