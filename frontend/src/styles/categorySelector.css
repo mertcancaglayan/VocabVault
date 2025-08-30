@@ -1,12 +1,14 @@
-section {
+section.categories-section {
+	height: 100%;
 	width: 100%;
 }
 
 .categories {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(min(400px, 100%), 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
 	gap: 24px;
 	width: 100%;
+	padding: 0 24px;
 }
 
 .category-btn {

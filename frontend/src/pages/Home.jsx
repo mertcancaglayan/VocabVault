@@ -10,12 +10,14 @@ function Home() {
 	const nextStep = () => setStep((e) => e + 1);
 	const prevStep = () => setStep((e) => (e > 0 ? e - 1 : 0));
 	return (
-		<section key={step} className="fade">
-			{step === 0 && <GreetingsSection nextStep={nextStep} />}
+		<div key={step} className="fade-wrapper">
+			<div className="fade">
+				{step === 0 && <GreetingsSection nextStep={nextStep} />}
 
-			{step === 1 && <LanguageSelector nextStep={nextStep} prevStep={prevStep} />}
-			{step === 2 && <CategorySelector prevStep={prevStep} />}
-		</section>
+				{step === 1 && <LanguageSelector nextStep={nextStep} prevStep={prevStep} />}
+				{step === 2 && <CategorySelector prevStep={prevStep} />}
+			</div>
+		</div>
 	);
 }
 

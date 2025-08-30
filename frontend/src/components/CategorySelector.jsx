@@ -1,10 +1,55 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MainButton from "./MainButton";
 import "../styles/categorySelector.css";
 import { useNavigate } from "react-router-dom";
+import { getCategories } from "../api/words";
 
 function CategorySelector({ prevStep, nextStep }) {
+	const [categories, setCategories] = useState([]);
 	const [category, setCategory] = useState("");
+
+	const categoryEmojis = {
+		animals: "🐾🐶",
+		bodyparts: "🦵🖐️",
+		clothingnaccessories: "👗🧢",
+		colors: "🎨🌈",
+		commonverbs: "🏃‍♂️✍️",
+		dailylife: "☕🛒",
+		ecosystems: "🌿🌎",
+		elements: "🔥💧🌬️",
+		emotionsnfeelings: "😊😢",
+		familynpeople: "👨‍👩‍👧‍👦",
+		foodndrinks: "🍔🍹",
+		housenfurniture: "🏠🛋️",
+		landformsnearth: "🏔️🏝️",
+		nature: "🌳🌸",
+		naturenweather: "🌞🌧️",
+		numbers: "123️⃣🔢",
+		plantntrees: "🌱🌴",
+		polarnarctic: "🐧❄️",
+		professions: "👩‍⚕️👨‍🏫",
+		schoolnwork: "📚💼",
+		spacensky: "🚀🌌",
+		technologyngadgets: "💻📱",
+		transportation: "🚗✈️",
+		waternclimate: "🌊🌦️",
+		weatherconditions: "⛈️🌤️",
+	};
+
+	const fromLang = localStorage.getItem("wordvault_fromLang");
+	const toLang = localStorage.getItem("wordvault_toLang");
+	console.log(fromLang);
+	console.log(toLang);
+
+	useEffect(() => {
+		getCategories().then((data) => {
+			setCategories(data);
+		});
+	}, []);
+
+	useEffect(() => {
+		console.log(categories);
+	}, [categories]);
 
 	const handleCategorySelect = (selectedCategory) => {
 		setCategory(selectedCategory);
@@ -13,51 +58,24 @@ function CategorySelector({ prevStep, nextStep }) {
 	let navigateToQuiz = useNavigate();
 
 	return (
-		<section>
+		<section className="categories-section">
 			<h2>Choose a Category</h2>
+
 			<div className="categories">
-				<button
-					data-category="animals"
-					className="btn category-btn"
-					onClick={() => handleCategorySelect("animals")}
-				>
-					🐾 Animals
-				</button>
-				<button
-					data-category="foodndrinks"
-					className="btn category-btn"
-					onClick={() => handleCategorySelect("foodndrinks")}
-				>
-					🍎 Food & Drinks
-				</button>
-				<button
-					data-category="colors"
-					className="btn category-btn"
-					onClick={() => handleCategorySelect("colors")}
-				>
-					🌈 Colors
-				</button>
-				<button
-					data-category="housenfurniture"
-					className="btn category-btn"
-					onClick={() => handleCategorySelect("housenfurniture")}
-				>
-					🏠 House & Furniture
-				</button>
-				<button
-					data-category="transportation"
-					className="btn category-btn"
-					onClick={() => handleCategorySelect("transportation")}
-				>
-					🚗 Transportation
-				</button>
-				<button
-					data-category="commonverbs"
-					className="btn category-btn"
-					onClick={() => handleCategorySelect("commonverbs")}
-				>
-					🔄 Common Verbs
-				</button>
+				{categories.map((element) => {
+					const capitalize = (word) => word.charAt(0).toUpperCase() + word.slice(1);
+
+					return (
+						<button
+							key={element}
+							data-category={element}
+							className="btn category-btn"
+							onClick={() => handleCategorySelect(element)}
+						>
+							{categoryEmojis[element] || "❓"} {capitalize(element)}
+						</button>
+					);
+				})}
 			</div>
 
 			<h2>Selected category: {category || "None"}</h2>
@@ -66,7 +84,11 @@ function CategorySelector({ prevStep, nextStep }) {
 				<MainButton text="Prev" onClick={prevStep} />
 				<MainButton
 					text="Next"
-					onClick={() => navigateToQuiz("/quiz", { state: { category } })}
+					onClick={() =>
+						navigateToQuiz("/quiz/category", {
+							state: { category, fromLang, toLang },
+						})
+					}
 					disabled={!category}
 				/>
 			</div>

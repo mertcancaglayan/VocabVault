@@ -1,19 +1,9 @@
-// import { useEffect, useState } from "react";
-// import axios from "axios";
-
 import Home from "./pages/Home.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Quiz from "./pages/Quiz.jsx";
 
 function App() {
-	// const [words, setWords] = useState([]);
 
-	// useEffect(() => {
-	// 	axios.get("http://localhost:5000/api/categories/nature").then((res) => {
-	// 		setWords(res.data);
-	// 		console.log(res.data);
-	// 	});
-	// }, []);
 
 	return (
 		<BrowserRouter>
@@ -21,7 +11,7 @@ function App() {
 				<Route path="/" element={<Home />} />
 				{/* <Route path="/about" element={<Quiz />} />
 				 */}
-				<Route path="/quiz" element={<Quiz />}></Route>
+				<Route path="/quiz/category" element={<Quiz />}></Route>
 			</Routes>
 		</BrowserRouter>
 	);
