@@ -6,7 +6,7 @@ import "../styles/result.css";
 function Result() {
 	const location = useLocation();
 
-	const { answers = {}, slides = [] } = location.state || {};
+	const { answers = {}, slides = [], category, fromLang, toLang } = location.state || {};
 
 	const score = getScore(answers);
 	const total = slides.length;
@@ -35,7 +35,10 @@ function Result() {
 			</ul>
 
 			<div className="btn-bottom">
-				<MainButton text="Retry" onClick={() => navigateTo("/")} />
+				<MainButton
+					text="Retry"
+					onClick={() => navigateTo("/quiz/category", { state: { category, fromLang, toLang } })}
+				/>
 				<MainButton text="Home" onClick={() => navigateTo("/")} />
 			</div>
 		</section>

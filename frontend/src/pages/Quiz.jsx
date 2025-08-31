@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../styles/quiz.css";
+import "../styles/global.css";
 import "../styles/components.css";
 import MainButton from "../components/MainButton";
 import { getWords } from "../api/words";
@@ -95,64 +96,59 @@ function Quiz() {
 						<path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
 					</svg>
 				</span>
-				<h2>Match the Word: {category}</h2>
+				<h2>Select the Correct Answer</h2>
 				<div className="progress">
 					{currentSlideIndex + 1} / {slides.length}
 				</div>
 			</header>
 
-			<article className="quiz-container">
-				<div className="quiz-slider">
-					<div className="slide">
-						<h3 className="word-to-translate">{currentSlide.question}</h3>
+			<article className="quiz-container" key={currentSlideIndex}>
+				<h3 className="word-to-translate fade">{currentSlide.question}</h3>
 
-						<ul className="options">
-							{currentSlide.answers.map((answer, answerIdx) => {
-								const slideAnswer = answers[currentSlideIndex];
-								const isSelected = slideAnswer?.answer === answer;
-								const isCorrect = answer === currentSlide.correct;
-								const showResult = slideAnswer !== undefined;
+				<ul className="options fade">
+					{currentSlide.answers.map((answer, answerIdx) => {
+						const slideAnswer = answers[currentSlideIndex];
+						const isSelected = slideAnswer?.answer === answer;
+						const isCorrect = answer === currentSlide.correct;
+						const showResult = slideAnswer !== undefined;
 
-								let buttonClass = "btn";
-								if (showResult) {
-									if (isSelected) {
-										buttonClass += isCorrect ? " correct" : " wrong";
-									} else if (isCorrect) {
-										buttonClass += " correct";
-									}
-								}
+						let buttonClass = "btn";
+						if (showResult) {
+							if (isSelected) {
+								buttonClass += isCorrect ? " correct" : " wrong";
+							} else if (isCorrect) {
+								buttonClass += " correct";
+							}
+						}
 
-								return (
-									<li key={answerIdx}>
-										<button
-											type="button"
-											className={buttonClass}
-											onClick={() => handleAnswer(answer, currentSlideIndex)}
-											disabled={showResult}
-										>
-											{answer}
-										</button>
-									</li>
-								);
-							})}
-						</ul>
-					</div>
-				</div>
-
-				<div className="btn-bottom">
-					<MainButton text="Prev" onClick={handlePrev} disabled={currentSlideIndex === 0} />
-					{currentSlideIndex === slides.length - 1 ? (
-						<MainButton
-							text="End"
-							onClick={() => {
-								navigateTo("/quiz/result", { state: { answers, slides } });
-							}}
-						/>
-					) : (
-						<MainButton text="Next" onClick={handleNext} disabled={!answers[currentSlideIndex]} />
-					)}
-				</div>
+						return (
+							<li key={answerIdx}>
+								<button
+									type="button"
+									className={buttonClass}
+									onClick={() => handleAnswer(answer, currentSlideIndex)}
+									disabled={showResult}
+								>
+									{answer}
+								</button>
+							</li>
+						);
+					})}
+				</ul>
 			</article>
+			<div className="btn-bottom">
+				<MainButton text="Prev" onClick={handlePrev} disabled={currentSlideIndex === 0} />
+				{currentSlideIndex === slides.length - 1 ? (
+					<MainButton
+						text="End"
+						onClick={() => {
+							navigateTo("/quiz/result", { state: { answers, slides, category, fromLang, toLang } });
+						}}
+					/>
+				) : (
+					<MainButton text="Next" onClick={handleNext} disabled={!answers[currentSlideIndex]} />
+				)}
+			</div>
 		</section>
 	);
 }
