@@ -1,10 +1,9 @@
 import Home from "./pages/Home.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Quiz from "./pages/Quiz.jsx";
+import Result from "./pages/Result.jsx";
 
 function App() {
-
-
 	return (
 		<BrowserRouter>
 			<Routes>
@@ -12,6 +11,7 @@ function App() {
 				{/* <Route path="/about" element={<Quiz />} />
 				 */}
 				<Route path="/quiz/category" element={<Quiz />}></Route>
+				<Route path="/quiz/result" element={<Result />}></Route>
 			</Routes>
 		</BrowserRouter>
 	);
