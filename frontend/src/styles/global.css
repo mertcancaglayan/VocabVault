@@ -1,26 +1,24 @@
-@import url("https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap");
 
 :root {
-	--font-family: "Gloria Hallelujah", cursive;
-	--bg-main: #fdf6e3;
-	--text-main: #6b4226;
+	--font-family: "Fredoka", sans-serif;
+	--bg-main: #ffffff;
+	--text-main: #333333;
 
-	/* button palette */
-	--btn-bg: #f2d388;
-	--btn-bg-hover: #f7e4b3;
-	--btn-bg-active: #d9b857;
-	--btn-border: #6b4226;
-	--btn-shadow: #a66c28;
-	--btn-shadow-inset: #f7e4b3;
+	--btn-bg: #78c850;
+	--btn-bg-hover: #6ab144;
+	--btn-bg-active: #4e8f33;
+	--btn-border: #3e7030;
+	--btn-shadow: #a3d977;
+	--btn-shadow-inset: #c6efad;
 
-	/* quiz feedback */
-	--correct-bg: #a1d99b;
-	--correct-border: #31a354;
-	--correct-text: #22543d;
+	--correct-bg: #b2f2bb;
+	--correct-border: #2b8a3e;
+	--correct-text: #1b4332;
 
-	--wrong-bg: #fbb6b6;
-	--wrong-border: #c53030;
-	--wrong-text: #742a2a;
+	--wrong-bg: #ffa8a8;
+	--wrong-border: #e03131;
+	--wrong-text: #7d2020;
 }
 
 *,
@@ -78,7 +76,23 @@ h2 {
 .btn-bottom {
 	display: flex;
 	justify-content: center;
+	align-items: end;
 	gap: 12px;
 	margin-top: auto;
 	margin-bottom: 24px;
+}
+
+.fade {
+	height: 100%;
+	width: 100%;
+	animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }

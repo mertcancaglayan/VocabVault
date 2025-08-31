@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../styles/home.css";
+import "../styles/global.css";
 import LanguageSelector from "../components/LanguageSelector";
 import CategorySelector from "../components/CategorySelector";
 import GreetingsSection from "../components/GreetingsSection";

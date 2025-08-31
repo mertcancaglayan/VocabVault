@@ -35,38 +35,23 @@ header span.back:hover {
 	margin-top: 50px;
 }
 
-.quiz-slider {
-	width: 100%;
+.quiz-container {
 	display: flex;
-	overflow: hidden;
-	gap: 16px;
-	scroll-snap-type: x mandatory;
-	scroll-padding: 0 16px;
-	padding: 8px;
-}
-
-.quiz-slider::-webkit-scrollbar {
-	display: none;
-}
-
-.slide {
-	flex: 0 0 calc(100% - 8px);
-	height: 100%;
-	scroll-snap-align: start;
-}
-
-.slide:last-child {
-	margin-right: 8px;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	gap: 24px;
 }
 
 .word-to-translate {
 	font-size: 2.8rem;
 	margin-bottom: 30px;
 	padding: 15px 20px;
-	background: #f2d388;
+	background: var(--btn-bg-active);
 	border-radius: 15px;
-	box-shadow: 5px 5px 0 #a66c28 inset;
+	box-shadow: 5px 5px 0 var(--btn-shadow) inset;
 	user-select: none;
+	color: aliceblue;
 }
 
 .options {
@@ -79,20 +64,22 @@ header span.back:hover {
 
 ul.options {
 	list-style: none;
+	padding: 0;
+	margin: 0;
 }
 
 .btn.correct {
-	background: #a1d99b;
-	border-color: #31a354;
+	background: var(--correct-bg);
+	border-color: var(--correct-border);
 	box-shadow: none;
-	color: #22543d;
+	color: var(--correct-text);
 	cursor: default;
 }
 
 .btn.wrong {
-	background: #fbb6b6;
-	border-color: #c53030;
+	background: var(--wrong-bg);
+	border-color: var(--wrong-border);
 	box-shadow: none;
-	color: #742a2a;
+	color: var(--wrong-text);
 	cursor: default;
 }
