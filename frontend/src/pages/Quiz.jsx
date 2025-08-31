@@ -38,7 +38,7 @@ function Quiz() {
 	useEffect(() => {
 		if (words.length === 0) return;
 
-		const newSlides = words.map((wordObj) => {
+		const newSlides = shuffle(words.slice(0, 5)).map((wordObj) => {
 			const options = shuffle([wordObj.to, ...wordObj.wrongWords]);
 			return { question: wordObj.from, answers: options, correct: wordObj.to };
 		});
@@ -145,9 +145,7 @@ function Quiz() {
 						<MainButton
 							text="End"
 							onClick={() => {
-								console.log(answers);
-
-								navigateTo("/");
+								navigateTo("/quiz/result", { state: { answers, slides } });
 							}}
 						/>
 					) : (

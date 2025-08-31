@@ -1,0 +1,67 @@
+/* result.css */
+
+/* Clean rounded font */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+
+.result-section {
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 2rem 1rem;
+	text-align: center;
+	font-family: "Nunito", sans-serif;
+	color: #2c2c2c;
+}
+
+.result-section h2 {
+	font-size: 2rem;
+	margin-bottom: 1rem;
+	font-weight: 700;
+	color: #3a3a3a;
+}
+
+.result-section p {
+	font-size: 1.2rem;
+	margin-bottom: 2rem;
+	color: #555;
+}
+
+/* Question cards */
+.result-list {
+	list-style: none;
+	padding: 0;
+	margin: 0 0 2rem 0;
+}
+
+.result-list li {
+	text-align: left;
+	background: #ffffff;
+	border-radius: 16px;
+	padding: 1rem 1.2rem;
+	margin-bottom: 1rem;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+	font-size: 1rem;
+	transition: transform 0.2s ease;
+}
+
+.result-list li:hover {
+	transform: translateY(-2px);
+}
+
+/* Softer feedback colors */
+.result-list li.correct {
+	border-left: 6px solid #81c995; /* soft green */
+	background: #f4fbf6;
+}
+
+.result-list li.wrong {
+	border-left: 6px solid #f28b82; /* soft coral red */
+	background: #fff6f6;
+}
+
+/* Highlighted words */
+.result-list strong {
+	display: inline-block;
+	margin-right: 0.5rem;
+	font-weight: 600;
+	color: #333;
+}

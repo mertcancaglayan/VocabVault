@@ -2,6 +2,7 @@ import express, { json } from "express";
 import cors from "cors";
 import { readCategoryJson, readTranslationJson } from "./helpers/fileHelper.js";
 import { getQuestions } from "./helpers/createQuestions.js";
+import shuffle from "./utils/shuffle.js";
 
 const app = express();
 app.use(cors());
@@ -27,7 +28,7 @@ app.get("/quiz/category/:category/:fromLang/:toLang", (req, res) => {
 
 	const questions = getQuestions(wordCategories, fromTranslations, toTranslations, category);
 
-	return res.json(questions);
+	return res.json(shuffle(questions));
 });
 
 app.listen(5000, () => console.log("Server running on port 5000"));
