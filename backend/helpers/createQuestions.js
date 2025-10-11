@@ -1,24 +1,28 @@
 import shuffle from "../utils/shuffle.js";
 
-const getRandomWrongWords = (firstWord, allWords) => {
-	const otherWords = allWords.filter((w) => w !== firstWord);
-
-	const shuffled = shuffle(otherWords);
-
-	return shuffled.slice(0, 3);
+const getRandomWrongWords = (correctWord, allWords) => {
+	const otherWords = allWords.filter((w) => w && w !== correctWord);
+	return shuffle(otherWords).slice(0, 3);
 };
 
-const getQuestions = (wordCategories, fromTranslations, toTranslations, category) => {
-	return wordCategories[category].map((id) => {
-		const correctWord = toTranslations[category]?.[id] || null;
+const formatQuestions = (dictionary, lang1, lang2) => {
+	const allToWords = dictionary.map((word) => word.translations?.[lang2]).filter(Boolean);
 
-		return {
-			id,
-			from: fromTranslations[category]?.[id] || null,
-			to: correctWord,
-			wrongWords: getRandomWrongWords(correctWord, Object.values(toTranslations[category])),
-		};
-	});
+	const words = dictionary
+		.filter((word) => word.translations?.[lang1] && word.translations?.[lang2])
+		.map((word) => {
+			const from = word.translations[lang1];
+			const to = word.translations[lang2];
+			return {
+				id: word.id || word._id,
+				from,
+				to,
+				partOfSpeech: word.partOfSpeech || undefined,
+				wrongWords: getRandomWrongWords(to, allToWords),
+			};
+		});
+
+	return words;
 };
 
-export { getQuestions };
+export default formatQuestions;

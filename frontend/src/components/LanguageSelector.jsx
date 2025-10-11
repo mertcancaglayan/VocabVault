@@ -22,9 +22,9 @@ function LanguageSelector({ nextStep, prevStep }) {
 					<label htmlFor="from-lang">From Language</label>
 					<select onChange={(e) => setFromLang(e.target.value)} className="btn" id="from-lang">
 						<option value="">From Language</option>
-						<option value="turkish">Turkish</option>
-						<option value="english">English</option>
-						<option value="polish">Polish</option>
+						<option value="tr">Turkish</option>
+						<option value="en">English</option>
+						<option value="pl">Polish</option>
 					</select>
 				</div>
 
@@ -32,9 +32,9 @@ function LanguageSelector({ nextStep, prevStep }) {
 					<label htmlFor="to-lang">To Language</label>
 					<select onChange={(e) => setToLang(e.target.value)} className="btn" id="to-lang">
 						<option value="">To Language</option>
-						<option value="turkish">Turkish</option>
-						<option value="english">English</option>
-						<option value="polish">Polish</option>
+						<option value="tr">Turkish</option>
+						<option value="en">English</option>
+						<option value="pl">Polish</option>
 					</select>
 				</div>
 			</div>

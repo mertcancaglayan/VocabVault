@@ -39,6 +39,8 @@ function Quiz() {
 	useEffect(() => {
 		if (words.length === 0) return;
 
+		console.log(words);
+
 		const newSlides = shuffle(words.slice(0, 5)).map((wordObj) => {
 			const options = shuffle([wordObj.to, ...wordObj.wrongWords]);
 			return { question: wordObj.from, answers: options, correct: wordObj.to };
