@@ -55,17 +55,24 @@ header span.back:hover {
 }
 
 .options {
-	display: flex;
-	justify-content: center;
-	gap: 15px;
-	flex-wrap: wrap;
-	margin-bottom: 30px;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(400px, 100%), 1fr));
+	gap: 0.8rem;
 }
 
 ul.options {
 	list-style: none;
 	padding: 0;
 	margin: 0;
+}
+
+ul.options > li {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 0.8rem;
+	padding: 0.8rem;
+	transition: transform 0.2s;
 }
 
 .btn.correct {

@@ -10,46 +10,44 @@ function CategorySelector({ prevStep, nextStep }) {
 
 	const categoryEmojis = {
 		animals: "🐾🐶",
-		bodyparts: "🦵🖐️",
-		clothingnaccessories: "👗🧢",
+		body_health: "🧠💪",
+		body_parts: "🦵🖐️",
+		clothing_and_accessories: "👗🧢",
 		colors: "🎨🌈",
-		commonverbs: "🏃‍♂️✍️",
-		dailylife: "☕🛒",
+		common_verbs: "🏃‍♂️✍️",
+		daily_life: "☕🛒",
 		ecosystems: "🌿🌎",
 		elements: "🔥💧🌬️",
-		emotionsnfeelings: "😊😢",
-		familynpeople: "👨‍👩‍👧‍👦",
-		foodndrinks: "🍔🍹",
-		housenfurniture: "🏠🛋️",
-		landformsnearth: "🏔️🏝️",
+		emotions_and_feelings: "😊😢",
+		family_and_people: "👨‍👩‍👧‍👦",
+		food_and_drinks: "🍔🍹",
+		house_and_furniture: "🏠🛋️",
+		landscapes: "🌄🏜️",
+		landforms_and_earth: "🏔️🏝️",
 		nature: "🌳🌸",
-		naturenweather: "🌞🌧️",
+		nature_and_weather: "🌞🌧️",
 		numbers: "123️⃣🔢",
-		plantntrees: "🌱🌴",
-		polarnarctic: "🐧❄️",
+		plants_and_trees: "🌱🌴",
+		polar_and_arctic: "🐧❄️",
 		professions: "👩‍⚕️👨‍🏫",
-		schoolnwork: "📚💼",
-		spacensky: "🚀🌌",
-		technologyngadgets: "💻📱",
+		school_and_work: "📚💼",
+		space_and_sky: "🚀🌌",
+		technology: "💻📱",
 		transportation: "🚗✈️",
-		waternclimate: "🌊🌦️",
-		weatherconditions: "⛈️🌤️",
+		water_and_climate: "🌊🌦️",
+		weather_conditions: "⛈️🌤️",
 	};
 
 	const fromLang = localStorage.getItem("wordvault_fromLang");
 	const toLang = localStorage.getItem("wordvault_toLang");
-	console.log(fromLang);
-	console.log(toLang);
 
 	useEffect(() => {
 		getCategories().then((data) => {
-			setCategories(data);
+			console.log(data[0].categories);
+
+			setCategories(data[0].categories);
 		});
 	}, []);
-
-	useEffect(() => {
-		console.log(categories);
-	}, [categories]);
 
 	const handleCategorySelect = (selectedCategory) => {
 		setCategory(selectedCategory);
@@ -60,25 +58,22 @@ function CategorySelector({ prevStep, nextStep }) {
 	return (
 		<section className="categories-section">
 			<h2>Choose a Category</h2>
-
 			<div className="categories">
 				{categories.map((element) => {
-					const capitalize = (word) => word.charAt(0).toUpperCase() + word.slice(1);
-
 					return (
 						<button
-							key={element}
-							data-category={element}
+							key={element.key}
+							data-category={element.key}
 							className="btn category-btn"
 							onClick={() => handleCategorySelect(element)}
 						>
-							{categoryEmojis[element] || "❓"} {capitalize(element)}
+							<span>{categoryEmojis[element.key] || "❓"}</span> <strong>{element.label}</strong>
 						</button>
 					);
 				})}
 			</div>
 
-			<h2>Selected category: {category || "None"}</h2>
+			<h2>Selected category: {category.label || "None"}</h2>
 
 			<div className="btn-bottom">
 				<MainButton text="Prev" onClick={prevStep} />

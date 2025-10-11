@@ -1,34 +1,22 @@
-import express, { json } from "express";
+import express from "express";
+import wordsRoute from "./src/routes/wordsRoutes.js";
+import categoriesRoute from "./src/routes/categoriesRoute.js";
 import cors from "cors";
-import { readCategoryJson, readTranslationJson } from "./helpers/fileHelper.js";
-import { getQuestions } from "./helpers/createQuestions.js";
-import shuffle from "./utils/shuffle.js";
+import dotenv from "dotenv";
+import { connectDB } from "./src/config/db.js";
 
+dotenv.config();
 const app = express();
-app.use(cors());
-app.use(json());
+const PORT = process.env.PORT || 5001;
 
-const wordCategories = readCategoryJson();
+connectDB();
 
-app.get("/", (req, res) => res.send("API is running"));
+app.use(cors({ origin: "http://localhost:3000", methods: ["GET"], credentials: true }));
+app.use(express.json());
 
-app.get("/categories", (req, res) => {
-	return res.json(Object.keys(wordCategories));
+app.use("/api/v1/words", wordsRoute);
+app.use("/api/v1/categories", categoriesRoute);
+
+app.listen(PORT, () => {
+	console.log(`Server running on port ${PORT}`);
 });
-
-app.get("/quiz/category/:category/:fromLang/:toLang", (req, res) => {
-	const { category, fromLang, toLang } = req.params;
-
-	if (!wordCategories[category]) {
-		return res.status(404).json({ error: "Category not found" });
-	}
-
-	const fromTranslations = readTranslationJson(fromLang);
-	const toTranslations = readTranslationJson(toLang);
-
-	const questions = getQuestions(wordCategories, fromTranslations, toTranslations, category);
-
-	return res.json(shuffle(questions));
-});
-
-app.listen(5000, () => console.log("Server running on port 5000"));
