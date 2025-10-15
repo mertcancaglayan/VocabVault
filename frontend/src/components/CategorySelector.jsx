@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import MainButton from "./MainButton";
 import "../styles/categorySelector.css";
 import { useNavigate } from "react-router-dom";
 import { getCategories } from "../api/words";
 
-function CategorySelector({ prevStep, nextStep }) {
+function CategorySelector({ prevStep }) {
 	const [categories, setCategories] = useState([]);
 	const [category, setCategory] = useState("");
 
@@ -40,11 +40,10 @@ function CategorySelector({ prevStep, nextStep }) {
 
 	const fromLang = localStorage.getItem("wordvault_fromLang");
 	const toLang = localStorage.getItem("wordvault_toLang");
+	const learningType = localStorage.getItem("wordvault_learningType");
 
 	useEffect(() => {
 		getCategories().then((data) => {
-			console.log(data[0].categories);
-
 			setCategories(data[0].categories);
 		});
 	}, []);
@@ -80,8 +79,8 @@ function CategorySelector({ prevStep, nextStep }) {
 				<MainButton
 					text="Next"
 					onClick={() =>
-						navigateToQuiz("/quiz/category", {
-							state: { category, fromLang, toLang },
+						navigateToQuiz(`/quiz/${learningType}`, {
+							state: { category, fromLang, toLang, learningType },
 						})
 					}
 					disabled={!category}

@@ -4,10 +4,11 @@ import "../styles/global.css";
 import LanguageSelector from "../components/LanguageSelector";
 import CategorySelector from "../components/CategorySelector";
 import GreetingsSection from "../components/GreetingsSection";
+import LearningType from "../components/LearningType";
 
 function Home() {
 	const [step, setStep] = useState(() => {
-		const validSteps = [0, 1, 2];
+		const validSteps = [0, 1, 2, 3];
 		const savedStep = localStorage.getItem("homePageStepVocabvault");
 
 		let parsedStep = null;
@@ -35,7 +36,8 @@ function Home() {
 				{step === 0 && <GreetingsSection nextStep={nextStep} />}
 
 				{step === 1 && <LanguageSelector nextStep={nextStep} prevStep={prevStep} />}
-				{step === 2 && <CategorySelector prevStep={prevStep} />}
+				{step === 2 && <LearningType nextStep={nextStep} prevStep={prevStep} />}
+				{step === 3 && <CategorySelector prevStep={prevStep} />}
 			</div>
 		</div>
 	);
