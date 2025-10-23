@@ -11,12 +11,21 @@ const PORT = process.env.PORT || 5001;
 
 connectDB();
 
-app.use(cors({ origin: process.env.API_URL, methods: ["GET"], credentials: true }));
+const allowedOrigins = [process.env.FRONT_URL];
+
+app.use(
+	cors({
+		origin: allowedOrigins,
+		methods: ["GET"],
+		credentials: true,
+	}),
+);
+
 app.use(express.json());
 
 app.use("/api/v1/words", wordsRoute);
 app.use("/api/v1/categories", categoriesRoute);
 
 app.listen(PORT, () => {
-	console.log(`Server running on port ${PORT}`);
+	console.log("Server is running");
 });
