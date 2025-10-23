@@ -11,11 +11,11 @@ const PORT = process.env.PORT || 5001;
 
 connectDB();
 
-const allowedOrigins = [process.env.FRONT_URL];
+const allowedOrigin = process.env.FRONT_URL;
 
 app.use(
 	cors({
-		origin: allowedOrigins,
+		origin: allowedOrigin,
 		methods: ["GET"],
 		credentials: true,
 	}),
