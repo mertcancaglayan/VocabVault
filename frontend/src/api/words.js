@@ -3,9 +3,6 @@ const API_URL = process.env.REACT_APP_API_URL;
 export const getCategories = async () => {
 	try {
 		const response = await fetch(`${API_URL}/api/v1/categories`);
-		console.log(API_URL);
-
-		console.log(response);
 
 		if (!response.ok) throw new Error(`Response status: ${response.status}`);
 

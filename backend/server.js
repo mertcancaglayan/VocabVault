@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 5001;
 
 connectDB();
 
-app.use(cors({ origin: "http://localhost:3000", methods: ["GET"], credentials: true }));
+app.use(cors({ origin: process.env.API_URL, methods: ["GET"], credentials: true }));
 app.use(express.json());
 
 app.use("/api/v1/words", wordsRoute);
